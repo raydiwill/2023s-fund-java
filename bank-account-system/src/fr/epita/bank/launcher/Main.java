@@ -25,7 +25,7 @@ public class Main {
 
         InvestmentAccount investmentAccount = new InvestmentAccount(10000);
         int quantity = 2;
-        double commissionRate = 0.05;
+
         AccountService.buyStock(stock, investmentAccount, quantity);
 
     }
