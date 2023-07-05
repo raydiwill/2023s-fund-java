@@ -4,6 +4,7 @@ import fr.epita.bank.datamodel.Customer;
 import fr.epita.bank.datamodel.InvestmentAccount;
 import fr.epita.bank.datamodel.Stock;
 import fr.epita.bank.datamodel.StockOrder;
+import fr.epita.bank.services.AccountService;
 
 public class Main {
 
@@ -25,15 +26,9 @@ public class Main {
         InvestmentAccount investmentAccount = new InvestmentAccount(10000);
         int quantity = 2;
         double commissionRate = 0.05;
-        buyStock(stock, investmentAccount, quantity, commissionRate);
+        AccountService.buyStock(stock, investmentAccount, quantity);
 
     }
 
-    private static void buyStock(Stock stock, InvestmentAccount investmentAccount, int quantity, double commissionRate) {
-        StockOrder stockOrder = new StockOrder(stock.getCurrentPrice(), quantity, commissionRate);
 
-        investmentAccount.setBalance(
-                investmentAccount.getBalance() - stockOrder.getCurrentPrice()* stockOrder.getQuantity()  * (1 + stockOrder.getCommissionRate())
-        );
-    }
 }
