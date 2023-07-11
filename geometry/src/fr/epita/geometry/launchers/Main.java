@@ -1,9 +1,6 @@
 package fr.epita.geometry.launchers;
 
-import fr.epita.geometry.datamodel.Circle;
-import fr.epita.geometry.datamodel.Shape;
-import fr.epita.geometry.datamodel.Square;
-import fr.epita.geometry.datamodel.Triangle;
+import fr.epita.geometry.datamodel.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,6 +22,10 @@ public class Main {
         Square square3 = new Square(30.0);
         Square square4 = new Square(30.0);
 
+        square1.getWidth();
+
+        SquareByComposition square = new SquareByComposition(30.0);
+
         Double globalArea = 0.0;
         List<Square> squares = Arrays.asList(square1, square2, square3, square4);
         for (int i = 0; i < squares.size(); i++) {
@@ -39,12 +40,15 @@ public class Main {
             globalArea += triangles.get(i).calculateArea();
         }
 
-        List<Shape> shapes = Arrays.asList(triangle, triangle2, circle,circle2, square1, square2, square3, square4);
+        Rectangle rectangle1 = new Rectangle(2.0,2.0);
+        Rectangle rectangle2 = new Rectangle(2.0,2.0);
+        List<Shape> shapes = Arrays.asList(triangle, triangle2, circle,circle2, square1, square2, square3, square4, rectangle1, rectangle2);
         for (int i = 0; i < shapes.size(); i++) {
             globalArea += shapes.get(i).calculateArea();
         }
 
 
+        System.out.println("globalArea:" + globalArea);
 
 
 
