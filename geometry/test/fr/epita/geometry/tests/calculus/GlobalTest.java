@@ -6,14 +6,16 @@ import fr.epita.geometry.datamodel.Triangle;
 public class GlobalTest {
 
     public static void main(String[] args) {
-        tddExample();
+        //tddExample();
 
-
-        Triangle triangle = new Triangle(10.0, 7.0, 5.0, 6.0);
-
-        triangle.calculatePerimeter();
+        //given
+        double sideA = 5.0;
+        double sideB = 6.0;
+        double base = 10.0;
+        Triangle triangle = new Triangle(base, 7.0, sideA, sideB);
+        //when & then
+        assertEquals(triangle.calculatePerimeter(), sideB+ sideA+ base);
         triangle.calculateArea();
-
 
     }
 
@@ -28,7 +30,7 @@ public class GlobalTest {
         System.out.println("circle perimeter: "  + actualPerimeter);
 
         //then
-        Double truePerimeter = 20 * Math.PI * 3;
+        Double truePerimeter = 20 * Math.PI * 2;
         Double trueArea = 20 * 20 * Math.PI;
 
         assertEquals(actualPerimeter, truePerimeter);
@@ -36,7 +38,7 @@ public class GlobalTest {
     }
 
     private static void assertEquals(Object actual, Object expected) {
-        if (actual  != expected){
+        if (!String.valueOf(actual).equals(String.valueOf(expected))){
             throw new RuntimeException("mismatch between expected: "+ expected +" and actual: " + actual );
         }
     }
