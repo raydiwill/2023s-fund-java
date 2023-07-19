@@ -24,13 +24,15 @@ public class TestLoading {
         List<String> partsForFirstPatient = Arrays.asList(lines.get(1).split(";"));
         String rawSocialSecurityNumber = partsForFirstPatient.get(0);
         rawSocialSecurityNumber = rawSocialSecurityNumber.replace("\"", "");
-        int socialSecurityNumber = Integer.parseInt(rawSocialSecurityNumber);
-
-        Patient patientZero = new Patient(socialSecurityNumber,);
-
+        long socialSecurityNumber = Long.parseLong(rawSocialSecurityNumber);
+        Patient patientZero = new Patient(socialSecurityNumber,partsForFirstPatient.get(1), partsForFirstPatient.get(2));
         SimpleDateFormat formatter =  new SimpleDateFormat("dd/MM/yyyy");
         Date parsedDate = formatter.parse(partsForFirstPatient.get(6));
-
+        patientZero.setPat_subscription_date(parsedDate);
+        patientZero.setPat_address(partsForFirstPatient.get(3));
+        patientZero.setPat_tel(partsForFirstPatient.get(4));
+        patientZero.setPat_insurance_id(Integer.parseInt(partsForFirstPatient.get(5)));
+        System.out.println(patientZero.toString());
 
 
     }

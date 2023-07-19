@@ -1,23 +1,25 @@
 package fr.epita.persons.datamodel;
 
+import java.util.Date;
+
 public class Patient {
 
-    private int pat_num_HC;
+    private long pat_num_HC;
     private String pat_lastname;
     private String pat_firstname;
     private String pat_address;
     private String pat_tel;
     private int pat_insurance_id;
 
-    private String pat_subscription_date;
+    private Date pat_subscription_date;
 
-    public Patient(int pat_num_HC, String pat_lastname, String pat_firstname) {
+    public Patient(long pat_num_HC, String pat_lastname, String pat_firstname) {
         this.pat_num_HC = pat_num_HC;
         this.pat_lastname = pat_lastname;
         this.pat_firstname = pat_firstname;
     }
 
-    public int getPat_num_HC() {
+    public long getPat_num_HC() {
         return pat_num_HC;
     }
 
@@ -53,11 +55,24 @@ public class Patient {
         this.pat_insurance_id = pat_insurance_id;
     }
 
-    public String getPat_subscription_date() {
+    public Date getPat_subscription_date() {
         return pat_subscription_date;
     }
 
-    public void setPat_subscription_date(String pat_subscription_date) {
+    public void setPat_subscription_date(Date pat_subscription_date) {
         this.pat_subscription_date = pat_subscription_date;
+    }
+
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "pat_num_HC=" + pat_num_HC +
+                ", pat_lastname='" + pat_lastname + '\'' +
+                ", pat_firstname='" + pat_firstname + '\'' +
+                ", pat_address='" + pat_address + '\'' +
+                ", pat_tel='" + pat_tel + '\'' +
+                ", pat_insurance_id=" + pat_insurance_id +
+                ", pat_subscription_date='" + pat_subscription_date + '\'' +
+                '}';
     }
 }
