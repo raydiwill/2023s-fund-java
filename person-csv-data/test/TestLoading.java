@@ -19,8 +19,10 @@ public class TestLoading {
         lines.forEach(System.out::println);
 
         List<String> partsForFirstPatient = Arrays.asList(lines.get(1).split(";"));
+        String rawSocialSecurityNumber = partsForFirstPatient.get(0);
+        int socialSecurityNumber = Integer.parseInt(rawSocialSecurityNumber);
 
-        Patient patientZero = new Patient();
+        Patient patientZero = new Patient(socialSecurityNumber,);
 
 
     }
