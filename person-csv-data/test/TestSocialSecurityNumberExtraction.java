@@ -23,8 +23,6 @@ public class TestSocialSecurityNumberExtraction {
             throw new RuntimeException("problem verifying the extraction of the gender");
         }
 
-
-
     }
 
 }

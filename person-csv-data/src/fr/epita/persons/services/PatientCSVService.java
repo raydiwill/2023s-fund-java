@@ -3,7 +3,9 @@ package fr.epita.persons.services;
 import fr.epita.persons.datamodel.Patient;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -48,6 +50,30 @@ public class PatientCSVService {
 
     }
 
+
+
+    public void writePatients(File file, List<Patient> patients) throws FileNotFoundException {
+        PrintWriter writer = new PrintWriter(file);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        //when
+        for(Patient p: patients){
+            String line = "";
+            line += p.getPat_num_HC() + ";";
+            line += p.getPat_lastname() + ";";
+            line += p.getPat_firstname() + ";";
+            line += p.getPat_address() + ";";
+            line += p.getPat_tel() + ";";
+            line += p.getPat_insurance_id() + ";";
+            line += simpleDateFormat.format(p.getPat_subscription_date()) + ";";
+            line += p.getYearOfBirth() + ";";
+            line += p.getGender() + ";";
+            line += p.getDepartment();
+            writer.println(line);
+        }
+
+        writer.close();
+    }
 
     public static void enrichPatient(String socialSecurityNumber, Patient patient) {
         String rawGender = socialSecurityNumber.substring(0, 1);
