@@ -41,10 +41,32 @@ public class PatientCSVService {
             currentPatient.setPat_address(partsForFirstPatient.get(3));
             currentPatient.setPat_tel(partsForFirstPatient.get(4));
             currentPatient.setPat_insurance_id(Integer.parseInt(partsForFirstPatient.get(5)));
+            enrichPatient(rawSocialSecurityNumber,currentPatient);
             patients.add(currentPatient);
         }
         return patients;
 
+    }
+
+
+    public static void enrichPatient(String socialSecurityNumber, Patient patient) {
+        String rawGender = socialSecurityNumber.substring(0, 1);
+        String gender = "";
+        if (rawGender.equals("2")){
+            gender = "F";
+        } else if(rawGender.equals("1")){
+            gender = "M";
+        }
+        if (gender.isEmpty()){
+            //exception
+        }
+
+        Integer yearOfBirth = Integer.parseInt("19"+ socialSecurityNumber.substring(1, 3));
+        String department = socialSecurityNumber.substring(3,5);
+
+        patient.setYearOfBirth(yearOfBirth);
+        patient.setDepartment(department);
+        patient.setGender(gender);
     }
 
 

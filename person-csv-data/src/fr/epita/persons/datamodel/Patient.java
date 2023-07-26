@@ -12,6 +12,9 @@ public class Patient {
     private int pat_insurance_id;
 
     private Date pat_subscription_date;
+    private String gender;
+    private String department;
+    private Integer yearOfBirth;
 
     public Patient(long pat_num_HC, String pat_lastname, String pat_firstname) {
         this.pat_num_HC = pat_num_HC;
@@ -74,5 +77,29 @@ public class Patient {
                 ", pat_insurance_id=" + pat_insurance_id +
                 ", pat_subscription_date='" + pat_subscription_date + '\'' +
                 '}';
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setYearOfBirth(Integer yearOfBirth) {
+        this.yearOfBirth = yearOfBirth;
+    }
+
+    public Integer getYearOfBirth() {
+        return yearOfBirth;
     }
 }
