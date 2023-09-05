@@ -22,5 +22,6 @@ public enum PassengerClass {
                 return entry;
             }
         }
+        return OTHER;
     }
 }

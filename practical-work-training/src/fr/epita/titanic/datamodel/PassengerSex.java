@@ -11,4 +11,14 @@ public enum PassengerSex {
     PassengerSex(String encodedName) {
         this.encodedName = encodedName;
     }
+
+    public static PassengerSex resolve(String s) {
+        PassengerSex[] enumEntries = PassengerSex.values();
+        for (PassengerSex entry : enumEntries){
+            if(entry.encodedName.equals(s)){
+                return entry;
+            }
+        }
+        return OTHER;
+    }
 }
