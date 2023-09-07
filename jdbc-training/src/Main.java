@@ -8,6 +8,11 @@ public class Main {
         }
         PreparedStatement preparedStatement = connection.prepareStatement("CREATE TABLE DOCTORS (doc_id VARCHAR(10), doc_name VARCHAR(255))");
         preparedStatement.execute();
+
+        //TODO
+        Doctor doctor = new Doctor("1234", "APRIL");
+        doctorDAO.save(doctor);
+
         PreparedStatement insertStatement = connection.prepareStatement("INSERT INTO  DOCTORS (doc_id , doc_name) VALUES ('1', 'MARCH')");
         insertStatement.execute();
         PreparedStatement selectStatement = connection.prepareStatement("SELECT doc_id , doc_name FROM  DOCTORS LIMIT 5");
