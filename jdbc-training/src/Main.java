@@ -1,3 +1,6 @@
+import fr.epita.dbtraining.datamodel.Doctor;
+import fr.epita.dbtraining.services.data.DoctorDAO;
+
 import java.sql.*;
 
 public class Main {
@@ -11,6 +14,7 @@ public class Main {
 
         //TODO
         Doctor doctor = new Doctor("1234", "APRIL");
+        DoctorDAO doctorDAO = new DoctorDAO();
         doctorDAO.save(doctor);
 
         PreparedStatement insertStatement = connection.prepareStatement("INSERT INTO  DOCTORS (doc_id , doc_name) VALUES ('1', 'MARCH')");
