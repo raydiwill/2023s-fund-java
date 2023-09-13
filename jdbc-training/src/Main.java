@@ -1,5 +1,5 @@
 import fr.epita.dbtraining.datamodel.Doctor;
-import fr.epita.dbtraining.services.data.DeleteFailedException;
+import fr.epita.dbtraining.services.exceptions.DeleteFailedException;
 import fr.epita.dbtraining.services.data.DoctorDAO;
 import fr.epita.dbtraining.services.exceptions.SaveFailedException;
 import fr.epita.dbtraining.services.exceptions.SearchFailedException;

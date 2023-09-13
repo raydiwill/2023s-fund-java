@@ -1,4 +1,4 @@
-package fr.epita.dbtraining.services.data;
+package fr.epita.dbtraining.services.exceptions;
 
 import java.sql.SQLException;
 
