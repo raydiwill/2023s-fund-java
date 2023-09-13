@@ -3,6 +3,7 @@ package fr.epita.dbtraining.services.data;
 import fr.epita.dbtraining.datamodel.Doctor;
 import fr.epita.dbtraining.services.exceptions.SaveFailedException;
 import fr.epita.dbtraining.services.exceptions.SearchFailedException;
+import fr.epita.dbtraining.services.exceptions.UpdateFailedException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -37,10 +38,11 @@ public class DoctorDAO {
             Connection connection = DriverManager.getConnection("jdbc:h2:mem:test");
             PreparedStatement update = connection.prepareStatement("UPDATE DOCTORS SET doc_id = ?, doc_name=? WHERE doc_id = ?");
             update.setString(1, updated.getId());
+            update.setString(3, updated.getId());
             update.setString(2, updated.getName());
             update.execute();
         }catch (SQLException sqlException){
-            throw new DeleteFailedException(sqlException);
+            throw new UpdateFailedException(sqlException);
         }
 
     }

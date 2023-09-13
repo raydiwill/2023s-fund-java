@@ -51,7 +51,10 @@ public class Main {
         } catch (SearchFailedException e) {
             throw new RuntimeException(e);
         }
+
+        //test update here;
         connection.close();
+
 
 
     }
