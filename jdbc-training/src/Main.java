@@ -3,6 +3,7 @@ import fr.epita.dbtraining.services.data.DeleteFailedException;
 import fr.epita.dbtraining.services.data.DoctorDAO;
 import fr.epita.dbtraining.services.exceptions.SaveFailedException;
 import fr.epita.dbtraining.services.exceptions.SearchFailedException;
+import fr.epita.dbtraining.services.exceptions.UpdateFailedException;
 
 import java.sql.*;
 import java.util.List;
@@ -37,6 +38,25 @@ public class Main {
          //warn the user that search was not possible
         }
 
+        //test update
+        try {
+            List<Doctor> doctors = doctorDAO.search(new Doctor("1234", null));
+            Doctor doctorToUpdate = doctors.get(0);
+            doctorToUpdate.setName("OCTOBER");
+            doctorDAO.update(doctorToUpdate.getId(), doctorToUpdate);
+            doctors = doctorDAO.search(new Doctor("1234", null));
+            if ("OCTOBER".equals(doctors.get(0).getName())){
+                System.out.println("update ok");
+            }else{
+                throw new RuntimeException("update ko");
+            }
+        } catch (SearchFailedException e) {
+            //warn the user that search was not possible
+        } catch (UpdateFailedException e) {
+            throw new RuntimeException(e);
+        }
+
+
         try {
             doctorDAO.delete("1234");
             List<Doctor> doctors = doctorDAO.search(new Doctor("1234", null));
@@ -52,7 +72,7 @@ public class Main {
             throw new RuntimeException(e);
         }
 
-        //test update here;
+
         connection.close();
 
 

@@ -33,7 +33,7 @@ public class DoctorDAO {
         }
     }
 
-    public void update(String id, Doctor updated) throws DeleteFailedException {
+    public void update(String id, Doctor updated) throws UpdateFailedException {
         try {
             Connection connection = DriverManager.getConnection("jdbc:h2:mem:test");
             PreparedStatement update = connection.prepareStatement("UPDATE DOCTORS SET doc_id = ?, doc_name=? WHERE doc_id = ?");

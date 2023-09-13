@@ -2,7 +2,7 @@ package fr.epita.dbtraining.datamodel;
 
 public class Doctor {
     private final String id;
-    private final String name;
+    private String name;
 
     public Doctor(String id, String name) {
 
@@ -24,5 +24,9 @@ public class Doctor {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    public void setName(String newName) {
+        this.name = newName;
     }
 }
