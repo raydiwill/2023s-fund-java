@@ -20,6 +20,19 @@ public class DoctorDAO {
             throw new SaveFailedException(e);
         }
     }
+
+    public void delete(String id) throws DeleteFailedException {
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:h2:mem:test");
+            PreparedStatement deleteStatement = connection.prepareStatement("DELETE FROM DOCTORS WHERE doc_id = ?");
+            deleteStatement.setString(1, id);
+            deleteStatement.execute();
+        }catch (SQLException sqlException){
+            throw new DeleteFailedException(sqlException);
+        }
+
+    }
+
     public List<Doctor> search(Doctor doctor) throws SearchFailedException {
         List<Doctor> doctors = new ArrayList<>();
         try {

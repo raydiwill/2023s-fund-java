@@ -1,4 +1,5 @@
 import fr.epita.dbtraining.datamodel.Doctor;
+import fr.epita.dbtraining.services.data.DeleteFailedException;
 import fr.epita.dbtraining.services.data.DoctorDAO;
 import fr.epita.dbtraining.services.exceptions.SaveFailedException;
 import fr.epita.dbtraining.services.exceptions.SearchFailedException;
@@ -36,6 +37,20 @@ public class Main {
          //warn the user that search was not possible
         }
 
+        try {
+            doctorDAO.delete("1234");
+            List<Doctor> doctors = doctorDAO.search(new Doctor("1234", null));
+            if (!doctors.isEmpty()){
+                throw new RuntimeException("delete does not work");
+            }else{
+                System.out.println("delete ok");
+            }
+
+        } catch (DeleteFailedException e) {
+            throw new RuntimeException(e);
+        } catch (SearchFailedException e) {
+            throw new RuntimeException(e);
+        }
         connection.close();
 
 
