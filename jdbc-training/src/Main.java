@@ -1,5 +1,6 @@
 import fr.epita.dbtraining.datamodel.Doctor;
 import fr.epita.dbtraining.services.data.DoctorDAO;
+import fr.epita.dbtraining.services.exceptions.SaveFailedException;
 
 import java.sql.*;
 
@@ -15,10 +16,11 @@ public class Main {
         //TODO
         Doctor doctor = new Doctor("1234", "APRIL");
         DoctorDAO doctorDAO = new DoctorDAO();
-        doctorDAO.save(doctor);
-
-        PreparedStatement insertStatement = connection.prepareStatement("INSERT INTO  DOCTORS (doc_id , doc_name) VALUES ('1', 'MARCH')");
-        insertStatement.execute();
+        try {
+            doctorDAO.save(doctor);
+        }catch (SaveFailedException saveFailedException){
+            //warn the user that it is not working
+        }
         PreparedStatement selectStatement = connection.prepareStatement("SELECT doc_id , doc_name FROM  DOCTORS LIMIT 5");
         ResultSet resultSet = selectStatement.executeQuery();
         while (resultSet.next()) {
