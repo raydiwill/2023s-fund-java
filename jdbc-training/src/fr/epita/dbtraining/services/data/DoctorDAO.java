@@ -30,6 +30,18 @@ public class DoctorDAO {
         }catch (SQLException sqlException){
             throw new DeleteFailedException(sqlException);
         }
+    }
+
+    public void update(String id, Doctor updated) throws DeleteFailedException {
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:h2:mem:test");
+            PreparedStatement update = connection.prepareStatement("UPDATE DOCTORS SET doc_id = ?, doc_name=? WHERE doc_id = ?");
+            update.setString(1, updated.getId());
+            update.setString(2, updated.getName());
+            update.execute();
+        }catch (SQLException sqlException){
+            throw new DeleteFailedException(sqlException);
+        }
 
     }
 
