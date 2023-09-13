@@ -1,8 +1,10 @@
 import fr.epita.dbtraining.datamodel.Doctor;
 import fr.epita.dbtraining.services.data.DoctorDAO;
 import fr.epita.dbtraining.services.exceptions.SaveFailedException;
+import fr.epita.dbtraining.services.exceptions.SearchFailedException;
 
 import java.sql.*;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
@@ -21,12 +23,17 @@ public class Main {
         }catch (SaveFailedException saveFailedException){
             //warn the user that it is not working
         }
-        PreparedStatement selectStatement = connection.prepareStatement("SELECT doc_id , doc_name FROM  DOCTORS LIMIT 5");
-        ResultSet resultSet = selectStatement.executeQuery();
-        while (resultSet.next()) {
-            String id = resultSet.getString("doc_id");
-            String name = resultSet.getString("doc_name");
-            System.out.println("id:name =>" + id + ":" + name);
+        try {
+            List<Doctor> doctors = doctorDAO.search(new Doctor("1234", null));
+            boolean successCondition = doctors.size() == 1;
+            if (!successCondition){
+                throw new RuntimeException("failed to retrieve doctor with id 1234");
+            }
+            else{
+                System.out.println(doctors);
+            }
+        } catch (SearchFailedException e) {
+         //warn the user that search was not possible
         }
 
         connection.close();

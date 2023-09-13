@@ -17,4 +17,12 @@ public class Doctor {
     public String getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
